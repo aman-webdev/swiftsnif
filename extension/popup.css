@@ -1,0 +1,120 @@
+body{
+    width: 400px;
+    padding: 5px 12px;
+    font-family: "Poppins", sans-serif;
+    color: #4c4c4c;
+    text-align: center;
+    border: 3px dashed #4c4c4c;
+    overflow: scroll;
+    position: relative;
+    border-radius: 5px;
+}
+
+.protest-strike-regular {
+    font-family: "Protest Strike", sans-serif;
+    font-size: 32px;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.flex{
+    display: flex;
+}
+
+svg{
+    width: 30px;
+    height: 30px;
+}
+
+.header-container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap:5px;
+    flex-direction: column;
+}
+
+.hero {
+    width: 150px;
+    position: relative;
+    left: 0;
+    
+
+}
+
+.btn{
+    color: white;
+  background-color: #85c7f2;
+    border: none;
+    margin-top: 20px;
+    border-radius: 3px;
+    padding: 6px 20px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+
+}
+.btn-container {
+    margin-top: 35px;
+    position: relative;
+}
+
+
+
+.btn:hover {
+    
+    opacity: 0.85;
+
+}
+
+.hidden { 
+    display: none;
+}
+
+.non-hidden { 
+    display: block;
+}
+
+.link{
+    font-size: 16px;
+    color: #85c7f2;
+    margin-top: 40px;
+    cursor: pointer;
+    text-decoration:underline;
+}
+
+.link-container svg{
+    cursor: pointer;
+}
+
+.form-container {
+    margin-top: 30px;
+}
+
+#pass-input  , #date-input{
+    padding: 8px 14px;
+    margin: 12px auto;
+    width: 250px;
+    border: 0.5px dashed #4c4c4c;
+    border-radius: 3px;
+
+}
+
+#pass-input:focus {
+    outline: none;
+}
+
+.small{
+    font-size: 10px;
+    margin-top: 1px;
+}
+
+.justify-start{
+    align-items: start;
+}
+
+.input-container {
+    margin-top: 12px;
+}
+

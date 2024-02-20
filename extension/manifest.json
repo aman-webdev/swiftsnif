@@ -1,0 +1,19 @@
+{
+    "name":"Swiftsnif - Url Shortener",
+    "version":"1.0",
+    "description":"Shorten, Secure, and Share Your Links with Confidence",
+    "permissions": ["activeTab"],
+    "action": {
+        "default_popup": "popup.html"
+        
+      },
+      "icons": {
+        "128": "img/128x128.png",
+        "48":"img/48x48.png",
+        "16":"img/16x16.png"
+      },
+  
+   
+      "manifest_version": 3
+    
+}
