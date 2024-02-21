@@ -64,7 +64,7 @@ button.addEventListener("click", async () => {
       const pass = document.querySelector('#pass-input').value
       const date = document.querySelector('#date-input').value
 
-      const response = await fetch("http://localhost:3000", {
+      const response = await fetch("https://swiftsnif-student-aman.koyeb.app", {
         method: "POST",
         body: JSON.stringify({ url 
       , ...(pass && passCheck  && {password:pass})
@@ -77,7 +77,7 @@ button.addEventListener("click", async () => {
       });
   
       const { shortId } = await response.json();
-      redirectURL = `http://localhost:3000/${shortId}`;
+      redirectURL = `https://swiftsnif-student-aman.koyeb.app/${shortId}`;
       link.textContent = redirectURL;
       formContainer.classList.add("hidden");
       linkContainer.classList.remove("hidden");
