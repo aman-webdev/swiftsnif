@@ -13,9 +13,7 @@ mongoConnect(process.env.MONGOOSE_URL).then(()=>console.log('Connected to DB'))
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-app.use(cors({
-    origin:"*"
-}))
+app.use(cors())
 app.use(express.json())
 
 app.use("/", urlRouter);

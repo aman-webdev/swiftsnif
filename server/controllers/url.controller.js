@@ -35,7 +35,7 @@ const createUrl = async (req, res, next) => {
 };
 
 const redirectToOriginalUrl = async (req, res, next) => {
-  const { shortId } = req.params;
+  const { shortId} = req.params;
   try {
     const URL = await UrlModel.findOne({ shortId });
     if (!URL) return res.status(404).json({ message: "No URL found!" });
@@ -43,7 +43,7 @@ const redirectToOriginalUrl = async (req, res, next) => {
       URL.expirationTime &&
       new Date(URL.expirationTime).getTime() < Date.now()
     )
-      return res.status(400).json({ messsage: "URL Expired" });
+      return res.redirect(`${process.env.FRONTEND_URL}/expired?id=${shortId}`).json({ messsage: "URL Expired" });
 
     if (URL.password) {
       const token = jwt.sign({shortId}, process.env.JWT_SECRET, {
@@ -58,24 +58,27 @@ const redirectToOriginalUrl = async (req, res, next) => {
   }
 };
 
-const verifyPasswordAndRedirect = (req, res) => {
-  const { token } = req.query;
-  const { password } = req.body;
+  const verifyPasswordAndRedirect = (req, res) => {
+    const { token , method } = req.query;
+    const { password } = req.body;
+    if (!token) return res.status(400).json({ message: "Invalid token" });
+    if (!password) return res.status(400).json({ message: "Password required" });
 
-  if (!token) return res.status(400).json({ message: "Invalid token" });
-  if (!password) return res.status(400).json({ message: "Password required" });
+    jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
+      if (err) {
+        console.log(err,'err')
+        return res.status(400).json({ message: err.message });
+      } 
 
-  jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
-    if (err) return res.status(400).json({ message: err.message });
+      const {shortId} = data;
+      const URL = await UrlModel.findOne({ shortId });
+      const comparePass = bcrypt.compareSync(password, URL.password);
+      if (!comparePass)  return res.status(400).json({ message: "Invalid password" });
+      if (method!=='client')return res.redirect(URL.originalLink)
+      res.status(200).json({redirectUrl:URL.originalLink})
+    });
 
-    const {shortId} = data;
-    const URL = await UrlModel.findOne({ shortId });
-    const comparePass = bcrypt.compareSync(password, URL.password);
-    if (!comparePass)
-      return res.status(400).json({ message: "Invalid password" });
-    res.redirect(URL.originalLink);
-  });
-};
+  };
 
 module.exports = {
   createUrl,
