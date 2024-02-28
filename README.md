@@ -71,6 +71,7 @@ https://swiftsnif.vercel.app/
 
 ## Run Locally
 
+
 Clone the project
 
 ```bash
@@ -83,7 +84,16 @@ Go to the project directory
   cd swiftsnif
 ```
 
+
 #
+
+### Docker
+
+```bash
+  docker-compose up 
+```
+
+### Manual Setup
 
 Client
 
