@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+    mongo:
+       image: mongo
+       volumes:
+          - mongodb:/data/db
+       
+    web:
+       build: ./client
+       ports:
+            - 5002:5173
+       environment:
+              - VITE_BE_URL=http://localhost:3000
+       depends_on:
+            - api
+      
+       volumes:
+            - ./client:/app
+            - /app/node_modules
+    api:
+         build:
+            context: ./server/
+            target: development
+         environment:
+            - JWT_SECRET=SECr3t
+            - FRONTEND_URL=http://localhost:5002
+            - MONGOOSE_URL=mongodb://mongo:27017/url-shortener 
+         ports:
+            - 3000:3000
+         volumes:
+            - ./server:/app
+    
+volumes:
+    mongodb:

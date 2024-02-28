@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import hero from "../assets/hero2.svg";
 import Input from "../components/Input";
 import Button from "../components/Button";
@@ -8,6 +8,7 @@ import QRCode from "react-qr-code";
 import { HashLoader } from "react-spinners";
 import { Success } from "../components";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 
 
@@ -19,7 +20,9 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
   const [shortenedResult, setShortenedResult] = useState(null);
-  
+
+
+
 
   const handleSubmit = async () => {
     if (!url) return;
