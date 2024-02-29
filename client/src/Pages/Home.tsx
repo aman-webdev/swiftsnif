@@ -24,7 +24,8 @@ const Home = () => {
 
 
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     if (!url) return;
     const data = {
       url,
@@ -67,7 +68,7 @@ const Home = () => {
           </span>
           and Expiration
         </h1>
-        <div className="relative w-full md:w-3/4 lg:w-1/2 mx-auto">
+        <form onSubmit={handleSubmit} className="relative w-full md:w-3/4 lg:w-1/2 mx-auto">
           <Input
             value={url}
             onChange={(e) => setUrl(e.target.value)}
@@ -75,12 +76,12 @@ const Home = () => {
             placeholder="https://"
           />
           <Button
-            onClick={handleSubmit}
+            type="submit"
             className="w-20 sm:w-40 h-10 sm:h-12 text-sm md:text-base rounded-md bg-[#DCF2F1] text-[#4c4c4c] absolute top-1/2 -translate-y-1/2 right-2"
           >
            { !isLoading ?  "Create" : <HashLoader size={30} className="mx-auto" color="#4c4c4c"/>}
           </Button>
-        </div>
+        </form>
         <div className="md:w-1/2 mx-auto mt-12 text-sm">
           <h4
             onClick={() => setIsAdvancedOpen(!isAdvancedOpen)}

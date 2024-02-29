@@ -22,7 +22,8 @@ const Password = () => {
 
   
 
-  const handleSubmit = async() => {
+  const handleSubmit = async(e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     try{
       setIsLoading(true)
      const res = await fetch(`${import.meta.env.VITE_BE_URL}/verify-password?token=${token}&method=client`,{
@@ -51,7 +52,7 @@ const Password = () => {
       <h2 className='font-heading text-2xl sm:text-4xl text-center mt-2'>This URL is Password Protected</h2>
 
       <p className='text-center text-xs mt-4'>Enter Password to Continue</p>
-      <div className="relative sm:w-3/4 mx-auto">
+      <form onSubmit={handleSubmit} className="relative sm:w-3/4 mx-auto">
           <Input
             value={password}
             type='password'
@@ -60,12 +61,11 @@ const Password = () => {
             placeholder="******"
           />
           <Button
-            onClick={handleSubmit}
             className="w-24 text-xs sm:text-base sm:w-40 h-12 rounded-md bg-[#DCF2F1] text-[#4c4c4c] absolute top-1/2 -translate-y-1/2 right-2"
           >
-           { !isLoading ?  "Create" : <HashLoader size={30} className="mx-auto" color="#4c4c4c"/>}
+           { !isLoading ?  "Submit" : <HashLoader size={30} className="mx-auto" color="#4c4c4c"/>}
           </Button>
-        </div>
+        </form>
     </div>
   )
 }

@@ -15,7 +15,7 @@ const Expand = ({title ,  inputProps , desc}: ExpandInterface) => {
         <p className='font-heading'>{title}</p>
         <p className='text-sm'>{desc}</p>
        <div>
-            <Input {...inputProps} />
+            <Input  {...inputProps} />
         </div>
     </div>
   )
