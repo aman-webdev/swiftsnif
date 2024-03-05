@@ -34,7 +34,7 @@ if (cluster.isPrimary) {
     app.use(cors())
     app.use(express.json())
     
-    app.get('/health',(req,res)=>{
+    app.get('/api/health',(req,res)=>{
         res.status(200).send(`Hello from Test route ${ process.pid}`)
     }
     )
